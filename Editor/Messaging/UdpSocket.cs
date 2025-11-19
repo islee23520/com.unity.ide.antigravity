@@ -6,7 +6,7 @@ using System;
 using System.Net;
 using System.Net.Sockets;
 
-namespace Microsoft.Unity.VisualStudio.Editor.Messaging
+namespace Google.Unity.Antigravity.Editor.Messaging
 {
 	internal class UdpSocket : Socket
 	{

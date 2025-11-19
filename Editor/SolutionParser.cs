@@ -5,7 +5,7 @@
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
-namespace Microsoft.Unity.VisualStudio.Editor
+namespace Google.Unity.Antigravity.Editor
 {
 	internal static class SolutionParser
 	{

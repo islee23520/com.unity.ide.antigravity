@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Microsoft.Unity.VisualStudio.Editor
+namespace Google.Unity.Antigravity.Editor
 {
 	internal struct VersionPair
 	{

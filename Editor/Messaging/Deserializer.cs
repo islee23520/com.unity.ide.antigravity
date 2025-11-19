@@ -5,7 +5,7 @@
 using System.IO;
 using System.Text;
 
-namespace Microsoft.Unity.VisualStudio.Editor.Messaging
+namespace Google.Unity.Antigravity.Editor.Messaging
 {
 	internal class Deserializer
 	{

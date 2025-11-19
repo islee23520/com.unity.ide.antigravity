@@ -7,7 +7,7 @@ using System.IO;
 using Unity.CodeEditor;
 using IOPath = System.IO.Path;
 
-namespace Microsoft.Unity.VisualStudio.Editor
+namespace Google.Unity.Antigravity.Editor
 {
 	internal interface IVisualStudioInstallation
 	{

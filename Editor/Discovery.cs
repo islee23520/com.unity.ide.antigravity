@@ -7,13 +7,13 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace Microsoft.Unity.VisualStudio.Editor
+namespace Google.Unity.Antigravity.Editor
 {
 	internal static class Discovery
 	{
 		public static IEnumerable<IVisualStudioInstallation> GetVisualStudioInstallations()
 		{
-			foreach (var installation in VisualStudioCursorInstallation.GetVisualStudioInstallations())
+			foreach (var installation in AntigravityInstallation.GetVisualStudioInstallations())
 				yield return installation;
 			foreach (var installation in VisualStudioCodiumInstallation.GetVisualStudioInstallations())
 				yield return installation;
@@ -23,7 +23,7 @@ namespace Microsoft.Unity.VisualStudio.Editor
 		{
 			try
 			{
-				if (VisualStudioCursorInstallation.TryDiscoverInstallation(editorPath, out installation))
+				if (AntigravityInstallation.TryDiscoverInstallation(editorPath, out installation))
 					return true;
 				if (VisualStudioCodiumInstallation.TryDiscoverInstallation(editorPath, out installation))
 					return true;
@@ -38,7 +38,7 @@ namespace Microsoft.Unity.VisualStudio.Editor
 
 		public static void Initialize()
 		{
-            VisualStudioCursorInstallation.Initialize();
+            AntigravityInstallation.Initialize();
             VisualStudioCodiumInstallation.Initialize();
 		}
 	}

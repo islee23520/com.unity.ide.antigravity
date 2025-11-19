@@ -8,13 +8,13 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
-using Microsoft.Unity.VisualStudio.Editor.Messaging;
-using Microsoft.Unity.VisualStudio.Editor.Testing;
+using Google.Unity.Antigravity.Editor.Messaging;
+using Google.Unity.Antigravity.Editor.Testing;
 using UnityEditor;
 using UnityEngine;
-using MessageType = Microsoft.Unity.VisualStudio.Editor.Messaging.MessageType;
+using MessageType = Google.Unity.Antigravity.Editor.Messaging.MessageType;
 
-namespace Microsoft.Unity.VisualStudio.Editor
+namespace Google.Unity.Antigravity.Editor
 {
 	[InitializeOnLoad]
 	internal class VisualStudioIntegration

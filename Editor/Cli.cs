@@ -6,7 +6,7 @@ using System;
 using System.Linq;
 using Unity.CodeEditor;
 
-namespace Microsoft.Unity.VisualStudio.Editor
+namespace Google.Unity.Antigravity.Editor
 {
 	internal static class Cli
 	{

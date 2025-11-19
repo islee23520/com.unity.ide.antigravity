@@ -16,7 +16,7 @@ using SimpleJSON;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Microsoft.Unity.VisualStudio.Editor
+namespace Google.Unity.Antigravity.Editor
 {
 	internal class ProcessRunnerResult
 	{

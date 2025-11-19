@@ -6,7 +6,7 @@
 using System.Net;
 using System.Threading;
 
-namespace Microsoft.Unity.VisualStudio.Editor.Messaging
+namespace Google.Unity.Antigravity.Editor.Messaging
 {
 	internal class TcpListener
 	{

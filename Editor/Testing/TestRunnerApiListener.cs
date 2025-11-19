@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEditor.TestTools.TestRunner.Api;
 using UnityEngine;
 
-namespace Microsoft.Unity.VisualStudio.Editor.Testing
+namespace Google.Unity.Antigravity.Editor.Testing
 {
 	[InitializeOnLoad]
 	internal class TestRunnerApiListener

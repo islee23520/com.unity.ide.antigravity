@@ -1,6 +1,6 @@
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Unity Technologies.
- *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Copyright (c) Google. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 using System;
@@ -12,14 +12,14 @@ using UnityEditor;
 using UnityEngine;
 using Unity.CodeEditor;
 
-[assembly: InternalsVisibleTo("Unity.VisualStudio.EditorTests")]
-[assembly: InternalsVisibleTo("Unity.VisualStudio.Standalone.EditorTests")]
+[assembly: InternalsVisibleTo("Google.Unity.Antigravity.EditorTests")]
+[assembly: InternalsVisibleTo("Google.Unity.Antigravity.Standalone.EditorTests")]
 [assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")]
 
-namespace Microsoft.Unity.VisualStudio.Editor
+namespace Google.Unity.Antigravity.Editor
 {
 	[InitializeOnLoad]
-	public class VisualStudioEditor : IExternalCodeEditor
+	public class AntigravityEditor : IExternalCodeEditor
 	{
 		CodeEditor.Installation[] IExternalCodeEditor.Installations => _discoverInstallations
 			.Result
@@ -29,38 +29,16 @@ namespace Microsoft.Unity.VisualStudio.Editor
 
 		private static readonly AsyncOperation<Dictionary<string, IVisualStudioInstallation>> _discoverInstallations;
 
-		static VisualStudioEditor()
+		static AntigravityEditor()
 		{
 			if (!UnityInstallation.IsMainUnityEditorProcess)
 				return;
 
 			Discovery.Initialize();
-			CodeEditor.Register(new VisualStudioEditor());
+			CodeEditor.Register(new AntigravityEditor());
 
 			_discoverInstallations = AsyncOperation<Dictionary<string, IVisualStudioInstallation>>.Run(DiscoverInstallations);
 		}
-
-#if UNITY_2019_4_OR_NEWER && !UNITY_2020
-		[InitializeOnLoadMethod]
-		static void LegacyVisualStudioCodePackageDisabler()
-		{
-			// disable legacy Visual Studio Code packages
-			var editor = CodeEditor.Editor.GetCodeEditorForPath("code.cmd");
-			if (editor == null)
-				return;
-
-			if (editor is VisualStudioEditor)
-				return;
-
-			// only disable the com.unity.ide.vscode package
-			var assembly = editor.GetType().Assembly;
-			var assemblyName = assembly.GetName().Name;
-			if (assemblyName != "Unity.VSCode.Editor")
-				return;
-
-			CodeEditor.Unregister(editor);
-		}
-#endif
 
 		private static Dictionary<string, IVisualStudioInstallation> DiscoverInstallations()
 		{
@@ -72,15 +50,13 @@ namespace Microsoft.Unity.VisualStudio.Editor
 			}
 			catch (Exception ex)
 			{
-				Debug.LogError($"Error detecting Visual Studio installations: {ex}");
+				Debug.LogError($"Error detecting Antigravity installations: {ex}");
 				return new Dictionary<string, IVisualStudioInstallation>();
 			}
 		}
 
-		internal static bool IsEnabled => CodeEditor.CurrentEditor is VisualStudioEditor && UnityInstallation.IsMainUnityEditorProcess;
+		internal static bool IsEnabled => CodeEditor.CurrentEditor is AntigravityEditor && UnityInstallation.IsMainUnityEditorProcess;
 
-		// this one seems legacy and not used anymore
-		// keeping it for now given it is public, so we need a major bump to remove it 
 		public void CreateIfDoesntExist()
 		{
 			if (!TryGetVisualStudioInstallationForPath(CodeEditor.CurrentEditorInstallation, true, out var installation)) 
@@ -132,12 +108,12 @@ namespace Microsoft.Unity.VisualStudio.Editor
 			GUILayout.Label($"<size=10><color=grey>{package.displayName} v{package.version} enabled</color></size>", style);
 			GUILayout.EndHorizontal();
 
-			if (installation is VisualStudioCursorInstallation)
+			if (installation is AntigravityInstallation)
 			{
-				var reuseWindow = EditorPrefs.GetBool(VisualStudioCursorInstallation.ReuseExistingWindowKey, false);
-				var newReuseWindow = EditorGUILayout.Toggle(new GUIContent("Reuse existing Cursor window", "When enabled, opens files in an existing Cursor window if found. When disabled, always opens a new window."), reuseWindow);
+				var reuseWindow = EditorPrefs.GetBool(AntigravityInstallation.ReuseExistingWindowKey, false);
+				var newReuseWindow = EditorGUILayout.Toggle(new GUIContent("Reuse existing Antigravity window", "When enabled, opens files in an existing Antigravity window if found. When disabled, always opens a new window."), reuseWindow);
 				if (newReuseWindow != reuseWindow)
-					EditorPrefs.SetBool(VisualStudioCursorInstallation.ReuseExistingWindowKey, newReuseWindow);
+					EditorPrefs.SetBool(AntigravityInstallation.ReuseExistingWindowKey, newReuseWindow);
 				
 				EditorGUILayout.Space();
 			}
@@ -227,7 +203,7 @@ namespace Microsoft.Unity.VisualStudio.Editor
 			var editorPath = CodeEditor.CurrentEditorInstallation;
 
 			if (!Discovery.TryDiscoverInstallation(editorPath, out var installation)) {
-				Debug.LogWarning($"Visual Studio executable {editorPath} is not found. Please change your settings in Edit > Preferences > External Tools.");
+				Debug.LogWarning($"Antigravity executable {editorPath} is not found. Please change your settings in Edit > Preferences > External Tools.");
 				return false;
 			}
 
