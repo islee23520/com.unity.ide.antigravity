@@ -34,7 +34,7 @@ namespace Google.Unity.Antigravity.Editor
 
 		static VisualStudioIntegration()
 		{
-			if (!VisualStudioEditor.IsEnabled)
+			if (!AntigravityEditor.IsEnabled)
 				return;
 
 			RunOnceOnUpdate(() =>

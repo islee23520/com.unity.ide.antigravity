@@ -167,7 +167,7 @@ namespace Google.Unity.Antigravity.Editor
 
 		private void RefreshCurrentInstallation()
 		{
-			var editor = CodeEditor.CurrentEditor as VisualStudioEditor;
+			var editor = CodeEditor.CurrentEditor as AntigravityEditor;
 			editor?.TryGetVisualStudioInstallationForPath(CodeEditor.CurrentEditorInstallation, lookupDiscoveredInstallations: true, out m_CurrentInstallation);
 		}
 

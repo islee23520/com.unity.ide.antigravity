@@ -21,7 +21,7 @@ namespace Google.Unity.Antigravity.Editor
 			return $"{installation.ToCodeEditorInstallation().Name} Path:{installation.Path}, LanguageVersionSupport:{installation.LatestLanguageVersionSupported} AnalyzersSupport:{installation.SupportsAnalyzers}";
 		}
 
-		internal static void GenerateSolutionWith(VisualStudioEditor vse, string installationPath)
+		internal static void GenerateSolutionWith(AntigravityEditor vse, string installationPath)
 		{
 			if (vse != null && vse.TryGetVisualStudioInstallationForPath(installationPath, lookupDiscoveredInstallations: true, out var vsi))
 			{
@@ -36,7 +36,7 @@ namespace Google.Unity.Antigravity.Editor
 
 		internal static void GenerateSolution()
 		{
-			if (CodeEditor.CurrentEditor is VisualStudioEditor vse)
+			if (CodeEditor.CurrentEditor is AntigravityEditor vse)
 			{
 				Log($"Using default editor settings for Visual Studio installation");
 				GenerateSolutionWith(vse, CodeEditor.CurrentEditorInstallation);
@@ -67,7 +67,7 @@ namespace Google.Unity.Antigravity.Editor
 						try
 						{
 							CodeEditor.SetExternalScriptEditor(installation.Path);
-							GenerateSolutionWith(CodeEditor.CurrentEditor as VisualStudioEditor, installation.Path);
+							GenerateSolutionWith(CodeEditor.CurrentEditor as AntigravityEditor, installation.Path);
 						}
 						finally
 						{
